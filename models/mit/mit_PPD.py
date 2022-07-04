@@ -6,7 +6,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from mit_srm import mit_b2
+from mit_srm_add import mit_b2
 import os
 import torch
 import torch.nn as nn

@@ -435,7 +435,7 @@ class mit_PLD_b2(nn.Module):
         self.class_num = class_num
         self.backbone = mit_b2()
         self.decode_head = Decoder(dims=[64, 128, 320, 512], dim=256, class_num=class_num)
-        self._init_weights()  # load pretrain
+        self._init_weights(**kwargs)  # load pretrain
 
     def forward(self, x):
         features = self.backbone(x)
@@ -444,8 +444,8 @@ class mit_PLD_b2(nn.Module):
         up = UpsamplingBilinear2d(scale_factor=4)
         features = up(features)
         return features
-    def _init_weights(self):
-        pretrained_dict = torch.load('/mnt/DATA-1/DATA-2/Feilong/scformer/models/mit/mit_b2.pth')
+    def _init_weights(self,pretrained_model_path):
+        pretrained_dict = torch.load(pretrained_model_path)
         model_dict = self.backbone.state_dict()
         pretrained_dict = {k: v for k, v in pretrained_dict.items() if k in model_dict}
         model_dict.update(pretrained_dict)

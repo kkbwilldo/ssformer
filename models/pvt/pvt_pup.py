@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from functools import partial
 import math
-
+import warnings
 from mmcv.cnn import ConvModule
 
 from timm.models.layers import DropPath, to_2tuple, trunc_normal_
